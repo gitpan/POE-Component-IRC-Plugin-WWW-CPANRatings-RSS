@@ -1,5 +1,8 @@
 Revision history for POE-Component-IRC-Plugin-WWW-CPANRatings-RSS
 
+0.0103  August 3, 2008
+        Changed the NON-utf rating to be outputed as '$x/5' format
+
 0.0102  August 3, 2008
         Added {max_ratings} arguments
 

@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::WWW::CPANRatings::RSS;
 use warnings;
 use strict;
 
-our $VERSION = '0.0102';
+our $VERSION = '0.0103';
 
 use POE qw/Component::WWW::CPANRatings::RSS/;
 use POE::Component::IRC::Plugin qw( :ALL );
@@ -97,6 +97,9 @@ sub ratings {
         my $rating = $review->{rating};
         if ( $self->{utf} and $rating ne 'N/A' ) {
             $rating = $self->_make_utf_rating( $rating );
+        }
+        elsif ( $rating ne 'N/A' ) {
+            $rating = "$rating/5";
         }
         $text =~ s/{:dist:}/$review->{dist}/g;
         $text =~ s/{:rating:}/$rating/g;

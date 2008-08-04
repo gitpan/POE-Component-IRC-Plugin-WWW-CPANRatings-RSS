@@ -1,6 +1,6 @@
 ---
 name: POE-Component-IRC-Plugin-WWW-CPANRatings-RSS
-version: 0.0102
+version: 0.0103
 author:
   - 'Zoffix Znet <zoffix@cpan.org>'
 abstract: announce CPAN ratings on IRC from RSS feed on http://cpanratings.perl.org/
@@ -17,7 +17,7 @@ build_requires:
 provides:
   POE::Component::IRC::Plugin::WWW::CPANRatings::RSS:
     file: lib/POE/Component/IRC/Plugin/WWW/CPANRatings/RSS.pm
-    version: 0.0102
+    version: 0.0103
 generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

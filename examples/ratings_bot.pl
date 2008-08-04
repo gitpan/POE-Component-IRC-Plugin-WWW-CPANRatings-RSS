@@ -28,6 +28,8 @@ sub _start {
         'cpan_ratings' =>
             POE::Component::IRC::Plugin::WWW::CPANRatings::RSS->new(
                 channels => [ '#zofbot' ],
+                utf => 0,
+                max_ratings => 50,
             )
     );
 
