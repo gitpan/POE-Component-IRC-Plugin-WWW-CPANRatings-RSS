@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::WWW::CPANRatings::RSS;
 use warnings;
 use strict;
 
-our $VERSION = '0.0101';
+our $VERSION = '0.0102';
 
 use POE qw/Component::WWW::CPANRatings::RSS/;
 use POE::Component::IRC::Plugin qw( :ALL );
@@ -32,6 +32,9 @@ sub new {
 
     $self->{utf} = 1
         unless defined $self->{utf};
+
+    $self->{max_ratings} = 5
+        unless defined $self->{max_ratings};
 
     return $self;
 }
@@ -88,7 +91,8 @@ sub ratings {
         return;
     }
 
-    for my $review ( @{ $in_ref->{ratings} || [] } ) {
+    my @ratings = @{ $in_ref->{ratings} || [] };
+    for my $review ( splice @ratings, 0, $self->{max_ratings} ) {
         my $text = $self->{format};
         my $rating = $review->{rating};
         if ( $self->{utf} and $rating ne 'N/A' ) {
@@ -183,6 +187,14 @@ POE::Component::IRC::Plugin::WWW::CPANRatings::RSS - announce CPAN ratings on IR
         $irc->yield( join => '#zofbot' );
     }
 
+
+    * CPANRatings rating: String-String - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4476 ]
+    * CPANRatings rating: IWL - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4474 ]
+    * CPANRatings rating: String - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4472 ]
+    * CPANRatings rating: String-Buffer - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4470 ]
+    * CPANRatings rating: String-Strip - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4468 ]
+    * CPANRatings rating: Acme-Monta - N/A - by BKB [ http://cpanratings.perl.org/#4466 ]
+
 =head1 DESCRIPTION
 
 The module is L<POE::Component::IRC> plugin which uses
@@ -211,19 +223,12 @@ reviews posted to L<http://cpanratings.perl.org/>
                     ua          => { timeout => 30 },
                     file        => 'cpan_ratings.rss.storable',
                     format      => 'rating: {:dist:} - {:rating:} - by {:creator:} [ {:link:} ]',
+                    max_ratings => 10,
                     response_event => 'irc_cpanratings';
                     auto        => 1,
                     utf         => 1,
                 )
         );
-
-
-    * CPANRatings rating: String-String - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4476 ]
-    * CPANRatings rating: IWL - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4474 ]
-    * CPANRatings rating: String - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4472 ]
-    * CPANRatings rating: String-Buffer - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4470 ]
-    * CPANRatings rating: String-Strip - ●○○○○ - by BKB [ http://cpanratings.perl.org/#4468 ]
-    * CPANRatings rating: Acme-Monta - N/A - by BKB [ http://cpanratings.perl.org/#4466 ]
 
 Constructs and returns a POE::Component::IRC::Plugin::WWW::CPANRatings::RSS
 object suitable to be fed to L<POE::Component::IRC>'s C<plugin_add()>
@@ -285,6 +290,16 @@ following fashion:
 
 The special sequences can be used any number of times if you so desire.
 The B<format> argument B<defaults to:> <'rating: {:dist:} - {:rating:} - by {:creator:} [ {:link:} ]'>
+
+=head3 C<max_ratings>
+
+    ->new( max_ratings => 5 );
+
+B<Optional>. The C<max_ratings> takes a positive integer as a value
+and specifies the maximum number of ratings/reviews to report at a time.
+Anything over that limit won't be reported at all; considering those
+reviews don't pop up like mushrooms this shouldn't be a problem.
+B<Defaults to:> C<5>
 
 =head3 C<response_event>
 
