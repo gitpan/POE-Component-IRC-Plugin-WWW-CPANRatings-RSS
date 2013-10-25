@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::WWW::CPANRatings::RSS;
 use warnings;
 use strict;
 
-our $VERSION = '0.0103';
+our $VERSION = '0.0104';
 
 use POE qw/Component::WWW::CPANRatings::RSS/;
 use POE::Component::IRC::Plugin qw( :ALL );
@@ -138,6 +138,8 @@ sub _make_utf_rating {
 
 1;
 __END__
+
+=encoding utf8
 
 =head1 NAME
 

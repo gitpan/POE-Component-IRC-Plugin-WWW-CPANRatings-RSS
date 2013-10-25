@@ -15,7 +15,9 @@ my $builder = Module::Build->new(
         'POE::Component::WWW::CPANRatings::RSS' => 0.0101,
         'POE::Component::IRC::Plugin'           => 0.10,
         'utf8'                                  => 1.06,
+        perl                                    => 5.008,
     },
+    configure_requires => { 'Module::Build' => 0.40 },
     add_to_cleanup      => [ 'POE-Component-IRC-Plugin-WWW-CPANRatings-RSS-*' ],
     create_makefile_pl => 'traditional',
 );
