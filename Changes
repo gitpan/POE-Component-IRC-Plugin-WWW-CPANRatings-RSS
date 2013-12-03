@@ -1,5 +1,9 @@
 Revision history for POE-Component-IRC-Plugin-WWW-CPANRatings-RSS
 
+0.0105  2013-12-02
+        - Added autogeneration of README from POD
+        - Moved author tests to xt/
+
 0.0104  2013-10-24
         - Fixed "Changes" file to comply with CPAN::Changes::Spec
         - Fixed Kwalitee errors

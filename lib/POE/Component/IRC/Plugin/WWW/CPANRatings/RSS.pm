@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::WWW::CPANRatings::RSS;
 use warnings;
 use strict;
 
-our $VERSION = '0.0104';
+our $VERSION = '0.0105';
 
 use POE qw/Component::WWW::CPANRatings::RSS/;
 use POE::Component::IRC::Plugin qw( :ALL );
@@ -79,7 +79,7 @@ sub _start {
             file   => $self->{file},
         }
     );
-    
+
     return;
 }
 
@@ -105,7 +105,7 @@ sub ratings {
         $text =~ s/{:rating:}/$rating/g;
         $text =~ s/{:creator:}/$review->{creator}/g;
         $text =~ s/{:link:}/$review->{link}/g;
-        
+
         if ( $self->{auto} ) {
             $self->{irc}->yield( ctcp => $_ => 'ACTION ' . $text )
                 for @{ $self->{channels} };

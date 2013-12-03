@@ -16,7 +16,7 @@ name: POE-Component-IRC-Plugin-WWW-CPANRatings-RSS
 provides:
   POE::Component::IRC::Plugin::WWW::CPANRatings::RSS:
     file: lib/POE/Component/IRC/Plugin/WWW/CPANRatings/RSS.pm
-    version: 0.0104
+    version: 0.0105
 requires:
   POE: 0.9999
   POE::Component::IRC::Plugin: 0.1
@@ -25,4 +25,4 @@ requires:
   utf8: 1.06
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.0104
+version: 0.0105

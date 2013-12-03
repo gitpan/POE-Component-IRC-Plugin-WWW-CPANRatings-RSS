@@ -37,7 +37,7 @@
    "provides" : {
       "POE::Component::IRC::Plugin::WWW::CPANRatings::RSS" : {
          "file" : "lib/POE/Component/IRC/Plugin/WWW/CPANRatings/RSS.pm",
-         "version" : "0.0104"
+         "version" : "0.0105"
       }
    },
    "release_status" : "stable",
@@ -46,5 +46,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.0104"
+   "version" : "0.0105"
 }
