@@ -1,5 +1,9 @@
 Revision history for POE-Component-IRC-Plugin-WWW-CPANRatings-RSS
 
+0.0106  2013-12-02
+        - Fixed a fatal bug due to _send_event no longer being
+          available in PoCo::IRC
+
 0.0105  2013-12-02
         - Added autogeneration of README from POD
         - Moved author tests to xt/

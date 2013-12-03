@@ -17,11 +17,11 @@ my $builder = Module::Build->new(
         'utf8'                                  => 1.06,
         perl                                    => 5.008,
     },
-    configure_requires => { 'Module::Build' => 0.40 },
+    configure_requires => { 'Module::Build' => 0 },
     add_to_cleanup      => [ 'POE-Component-IRC-Plugin-WWW-CPANRatings-RSS-*' ],
     create_makefile_pl => 'traditional',
 );
 if ( $ENV{RELEASE_TESTING} ) {
-    system('pod2text lib/App/Soundcloud/Radio.pm > README');
+    system('pod2text lib/POE/Component/IRC/Plugin/WWW/CPANRatings/RSS.pm > README');
 }
 $builder->create_build_script();

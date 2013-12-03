@@ -28,7 +28,7 @@ sub _start {
         'cpan_ratings' =>
             POE::Component::IRC::Plugin::WWW::CPANRatings::RSS->new(
                 channels => [ '#zofbot' ],
-                utf => 0,
+                utf => 1,
                 max_ratings => 50,
             )
     );
@@ -45,6 +45,7 @@ sub irc_001 {
      my @output = ( "$event: " );
 
      for my $arg (@$args) {
+        next unless defined $arg;
          if ( ref $arg eq 'ARRAY' ) {
              push( @output, '[' . join(' ,', @$arg ) . ']' );
          }

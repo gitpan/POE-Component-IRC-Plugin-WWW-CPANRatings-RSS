@@ -3,7 +3,7 @@ package POE::Component::IRC::Plugin::WWW::CPANRatings::RSS;
 use warnings;
 use strict;
 
-our $VERSION = '0.0105';
+our $VERSION = '0.0106';
 
 use POE qw/Component::WWW::CPANRatings::RSS/;
 use POE::Component::IRC::Plugin qw( :ALL );
@@ -114,7 +114,7 @@ sub ratings {
     my %event_output =  %$in_ref;
     delete $event_output{unique};
     $event_output{rate} = delete $event_output{repeat};
-    $self->{irc}->_send_event( $self->{response_event} => \%event_output );
+    $self->{irc}->send_event( $self->{response_event} => \%event_output );
 }
 
 sub _shutdown {
